@@ -16,9 +16,18 @@
   changed = green
   untracked = cyan
 [user]
-  name = Anonymous Developer
-  email = dev@influitive.com
-  affiliation = Influitive
+  name = Jorge Barnaby
+  email = jorge.barnaby@gmail.com
+#  affiliation = Influitive
+[core]
+  excludesfile = /Users/yorch/.gitignore
+  quotepath = false
+[difftool "sourcetree"]
+  cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+  path =
+[mergetool "sourcetree"]
+  cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+  trustExitCode = true
 [push]
   default = current
 [alias]
@@ -28,5 +37,8 @@
   co = checkout
   df = diff
   lg = log -p
+  hist = log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short
+  type = cat-file -t
+  dump = cat-file -p
 [merge]
 	tool = opendiff

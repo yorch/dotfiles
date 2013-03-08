@@ -1,17 +1,21 @@
 # ALIASES
 
+alias l='ls -lh'
+alias ll='ls -lah'
+alias ls='ls -a'
+
 #general commands
-alias rr='bundle exec rake routes | grep'
 alias dotfiles='cd ~/dotfiles'
 alias snip='cd ~/.vim/vim-addons/github-enricribas-snipmate-snippets/'
 alias did='idonethis'
 alias ali='vi ~/.bash_aliases'
 alias reload='. ~/.bashrc'
-alias inf='cd ~/Code/influitive-app'
+#alias inf='cd ~/Code/influitive-app'
 
 #postgres
 alias pg_start='pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log start'
-alias pg_stop='pg_ctl -D /usr/local/var/postgres stop'
+#alias pg_stop='pg_ctl -D /usr/local/var/postgres stop'
+alias pg_stop="pg_ctl -D /usr/local/var/postgres stop -s -m fast"
 
 #mysql
 alias mysql_start='mysql.server start'
@@ -40,38 +44,39 @@ alias push='git pull origin && bundle exec rake spec && git push origin'
 alias git_make_alias='git config alias.'
 alias gmt='git mergetool -y'
 alias gm='git merge'
-alias pr='hub pull-request -b development -h influitive/influitive-app:'
+#alias pr='hub pull-request -b development -h influitive/influitive-app:'
 
 # rails development
 alias taild='tail -f log/development.log'
 alias tailt='tail -f log/test.log'
+alias be='bundle exec'
+alias r='bundle exec rails'
 alias rk='bundle exec rake'
+alias rr='bundle exec rake routes | grep'
 alias rs='bundle exec rspec -f d'
 alias rsa='bundle exec rspec spec --tag ~slow --tag ~type:feature'
 alias rsai='bundle exec rspec spec'
 
+alias migrate='bundle exec rake apartment:migrate db:test:prepare'
+alias redo='bundle exec rake apartment:migrate:redo'
+
 # project related
 
-alias staging_migrate_status="heroku run bundle exec rake db:migrate:status -a influitive-staging |grep down |cut -d' ' -f7"
+#alias staging_migrate_status="heroku run bundle exec rake db:migrate:status -a influitive-staging |grep down |cut -d' ' -f7"
 
 alias restore_qa='heroku pgbackups:restore -a influitive-qa-interview -confirm influitive-qa-interview'
-alias stage="git push staging development:master"
+alias stage='git push staging development:master'
 alias pre_stage='git push staging pre-prod:master'
-alias stage_seed='heroku run rake apartment:seed --app influitive-staging'
-alias stage_migrate='heroku run rake apartment:migrate --app influitive-staging'
+#alias stage_seed='heroku run rake apartment:seed --app influitive-staging'
+#alias stage_migrate='heroku run rake apartment:migrate --app influitive-staging'
+alias merge_to_stable='git checkout stable && git merge master && git push && git checkout master'
+
+#mejuri
+alias ssh-mejuri='ssh root@sapphire.mejuri.com'
+alias mej='cd ~/Development/mejuri/web-master'
 
 function gcof() { git checkout feature/APP-"$@" ; }
 function gpf() { git push origin feature/APP-"$@" ; }
-
-# postgres commands
-alias pg_start="pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log start"
-alias pg_stop="pg_ctl -D /usr/local/var/postgres stop -s -m fast"
-
-# rails
-alias migrate='bundle exec rake apartment:migrate db:test:prepare'
-alias redo='bundle exec rake apartment:migrate:redo'
-alias r="bundle exec rails"
-alias be="bundle exec "
 
 # emasc
 alias e='emacsclient -t'
